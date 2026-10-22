@@ -1,0 +1,10 @@
+{
+  "buildCommand": "npm --prefix ai-career-builder/frontend install && npm --prefix ai-career-builder/frontend run build",
+  "outputDirectory": "ai-career-builder/frontend/dist",
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}
