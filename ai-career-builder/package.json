@@ -1,0 +1,22 @@
+{
+  "name": "ai-career-builder",
+  "version": "1.0.0",
+  "description": "AI Career Builder - AI-Powered Resume, Portfolio, Cover Letter and Career Recommendation Platform",
+  "scripts": {
+    "start": "node backend/src/server.js",
+    "backend": "cd backend && npm run dev",
+    "frontend": "cd frontend && npm run dev",
+    "build": "cd frontend && npm run build"
+  },
+  "keywords": [
+    "mern",
+    "full-stack",
+    "resume-builder",
+    "portfolio-builder",
+    "ai",
+    "gemini",
+    "ats"
+  ],
+  "author": "College Student (FSD)",
+  "license": "MIT"
+}
