@@ -1,0 +1,15 @@
+services:
+  # Unified Full-Stack Service (Frontend + Backend on a single URL)
+  - type: web
+    name: ai-career-builder
+    env: node
+    plan: free
+    buildCommand: npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        generateValue: true
+      - key: MONGO_URI
+        value: mongodb://127.0.0.1:27017/ai_career_builder

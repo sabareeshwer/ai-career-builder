@@ -1,0 +1,12 @@
+{
+  "name": "ai-career-builder-root",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "install:all": "npm --prefix ai-career-builder/backend install && npm --prefix ai-career-builder/frontend install",
+    "build": "npm --prefix ai-career-builder/frontend install && npm --prefix ai-career-builder/frontend run build && npm --prefix ai-career-builder/backend install",
+    "start": "node ai-career-builder/backend/src/server.js",
+    "dev": "npm --prefix ai-career-builder/backend run dev",
+    "dev:frontend": "npm --prefix ai-career-builder/frontend run dev"
+  }
+}

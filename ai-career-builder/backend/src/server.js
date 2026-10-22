@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const dotenv = require('dotenv');
 const path = require('path');
+const fs = require('fs');
 
 // Load environment variables
 dotenv.config();
@@ -56,16 +57,29 @@ app.use('/api/portfolios', portfolioRoutes);
 app.use('/api/cover-letters', coverLetterRoutes);
 app.use('/api/career', careerRoutes);
 
-// Root greeting
-app.get('/', (req, res) => {
-  res.json({
-    message: 'AI Career Builder Backend API is running smoothly.',
-    documentation: '/api/health',
-  });
-});
+// Serve static frontend files if dist folder exists
+const frontendDist = path.join(__dirname, '..', '..', 'frontend', 'dist');
 
-// 404 Handler
-app.use((req, res, next) => {
+if (fs.existsSync(frontendDist)) {
+  app.use(express.static(frontendDist));
+  app.get('*', (req, res, next) => {
+    if (req.originalUrl.startsWith('/api')) {
+      return next();
+    }
+    res.sendFile(path.join(frontendDist, 'index.html'));
+  });
+} else {
+  // Root greeting for standalone API mode
+  app.get('/', (req, res) => {
+    res.json({
+      message: 'AI Career Builder Backend API is running smoothly.',
+      documentation: '/api/health',
+    });
+  });
+}
+
+// 404 Handler for unhandled API routes
+app.use('/api', (req, res) => {
   res.status(404).json({
     success: false,
     message: `API endpoint not found: ${req.method} ${req.originalUrl}`,
